@@ -1,0 +1,546 @@
+
+Setting environment for using XAMPP for Windows.
+User@DESKTOP-T19MFTD c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| ages               |
+| information_schema |
+| music              |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| roster             |
+| test               |
+| traildatabase      |
++--------------------+
+9 rows in set (0.025 sec)
+
+MariaDB [(none)]> create database CSE370_LAB01_Sec15;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ages               |
+| cse370_lab01_sec15 |
+| information_schema |
+| music              |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| roster             |
+| test               |
+| traildatabase      |
++--------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [(none)]> use CSE70_LAB01_Sec15;
+ERROR 1049 (42000): Unknown database 'cse70_lab01_sec15'
+MariaDB [(none)]> use CSE370_LAB01_Sec15;
+Database changed
+MariaDB [CSE370_LAB01_Sec15]> CREATE TABLE Lab_Grades(std_id char(4),name varchar(30),major char(3),section char(1),days_present int,project_marks double,cgpa decimal(3,2),submission_date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [CSE370_LAB01_Sec15]> CREATE TABLE Lab_Grades(std_id char(4),name varchar(30),major char(3),section char(1),days_present int,project_marks double,cgpa decimal(3,2),submission_date date);
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> show databases
+    -> SHOW TABLES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SHOW TABLES' at line 2
+MariaDB [CSE370_LAB01_Sec15]> SHOW TABLES;
++------------------------------+
+| Tables_in_cse370_lab01_sec15 |
++------------------------------+
+| lab_grades                   |
++------------------------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> describe Lab_Grades;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| std_id          | char(4)      | YES  |     | NULL    |       |
+| name            | varchar(30)  | YES  |     | NULL    |       |
+| major           | char(3)      | YES  |     | NULL    |       |
+| section         | char(1)      | YES  |     | NULL    |       |
+| days_present    | int(11)      | YES  |     | NULL    |       |
+| project_marks   | double       | YES  |     | NULL    |       |
+| cgpa            | decimal(3,2) | YES  |     | NULL    |       |
+| submission_date | date         | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+8 rows in set (0.016 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> insert into Lab_Grades (std_id, name, major, section, days_present, project_marks, cgpa, submission_date) VALUES ('0001', 'Abir', 'CS', '1', 10, 18.5, 3.91, '2018-09-15');
+Query OK, 1 row affected (0.049 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades;
++--------+------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name | major | section | days_present | project_marks | cgpa | submission_date |
++--------+------+-------+---------+--------------+---------------+------+-----------------+
+| 0001   | Abir | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      |
++--------+------+-------+---------+--------------+---------------+------+-----------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> INSERT INTO Lab_Grades VALUES ('0002', 'Nafis', 'CSE', '1', 12, 20, 3.86, '2018-08-15'),
+    -> ('0003', 'Tasneem', 'CS', '1', 8, 18, 3.57, '2018-09-18'),
+    -> ('0004', 'Nahid', 'ECE', '2', 7, 16.5, 3.25, '2018-08-20'),
+    -> ('0005', 'Arafat', 'CS', '2', 11, 20, 4, '2018-09-13'),
+    -> ('0006', 'Tasneem', 'CSE', '1', 12, 17.5, 3.7, '2018-08-15'),
+    -> ('0007', 'Muhtadi', 'ECE', '1', 10, 19, 3.67, '2018-09-16'),
+    -> ('0008', 'Farhana', 'CSE', '2', 6, 15, 2.67, '2018-08-16'),
+    -> ('0009', 'Naima', 'CSE', '2', 12, 20, 3.7, '2018-08-14');
+Query OK, 8 rows affected (0.008 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18      |
+| 0004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20      |
+| 0005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13      |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15      |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16      |
+| 0008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16      |
+| 0009   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14      |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+9 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Alter Table Lab_Grades add project_title char(10);
+Query OK, 0 rows affected (0.009 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+-----------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date | project_title |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18      | NULL          |
+| 0004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20      | NULL          |
+| 0005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13      | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15      | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16      | NULL          |
+| 0008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16      | NULL          |
+| 0009   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14      | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+---------------+
+9 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Alter Table Lab_Grades MODIFY COLUMN project_title varchar(50);
+Query OK, 9 rows affected (0.045 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+MariaDB [CSE370_LAB01_Sec15]> describe Lab_Grades;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| std_id          | char(4)      | YES  |     | NULL    |       |
+| name            | varchar(30)  | YES  |     | NULL    |       |
+| major           | char(3)      | YES  |     | NULL    |       |
+| section         | char(1)      | YES  |     | NULL    |       |
+| days_present    | int(11)      | YES  |     | NULL    |       |
+| project_marks   | double       | YES  |     | NULL    |       |
+| cgpa            | decimal(3,2) | YES  |     | NULL    |       |
+| submission_date | date         | YES  |     | NULL    |       |
+| project_title   | varchar(50)  | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+9 rows in set (0.011 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> ALTER TABLE Lab_Grades CHANGE COLUMN submission_date sub_date DATE;
+Query OK, 0 rows affected (0.007 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [CSE370_LAB01_Sec15]> describe Lab_Grades;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| std_id        | char(4)      | YES  |     | NULL    |       |
+| name          | varchar(30)  | YES  |     | NULL    |       |
+| major         | char(3)      | YES  |     | NULL    |       |
+| section       | char(1)      | YES  |     | NULL    |       |
+| days_present  | int(11)      | YES  |     | NULL    |       |
+| project_marks | double       | YES  |     | NULL    |       |
+| cgpa          | decimal(3,2) | YES  |     | NULL    |       |
+| sub_date      | date         | YES  |     | NULL    |       |
+| project_title | varchar(50)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+9 rows in set (0.014 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20 | NULL          |
+| 0005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 | NULL          |
+| 0009   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+9 rows in set (0.001 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> UPDATE Lab_Grades SET major = "CSE" WHERE name = "Arafat"
+    -> ;
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 | NULL          |
+| 0009   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+9 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> UPDATE Lab_Grades SET name="Naheed",project_marks=16 WHERE std_id="0004";
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0004   | Naheed  | ECE   | 2       |            7 |            16 | 3.25 | 2018-08-20 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 | NULL          |
+| 0009   | Naima   | CSE   | 2       |           12 |            20 | 3.70 | 2018-08-14 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+9 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> DELETE FROM Lab_Grades WHERE Name="Naima";
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0004   | Naheed  | ECE   | 2       |            7 |            16 | 3.25 | 2018-08-20 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0008   | Farhana | CSE   | 2       |            6 |            15 | 2.67 | 2018-08-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+8 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> DELETE FROM Lab_Grades WHERE days_present<8;
+Query OK, 2 rows affected (0.003 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select std_id, name, cgpa from Lab_Grades;
++--------+---------+------+
+| std_id | name    | cgpa |
++--------+---------+------+
+| 0001   | Abir    | 3.91 |
+| 0002   | Nafis   | 3.86 |
+| 0003   | Tasneem | 3.57 |
+| 0005   | Arafat  | 4.00 |
+| 0006   | Tasneem | 3.70 |
+| 0007   | Muhtadi | 3.67 |
++--------+---------+------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select std_id,name,days_present * 5/12 from Lab_Grades;
++--------+---------+---------------------+
+| std_id | name    | days_present * 5/12 |
++--------+---------+---------------------+
+| 0001   | Abir    |              4.1667 |
+| 0002   | Nafis   |              5.0000 |
+| 0003   | Tasneem |              3.3333 |
+| 0005   | Arafat  |              4.5833 |
+| 0006   | Tasneem |              5.0000 |
+| 0007   | Muhtadi |              4.1667 |
++--------+---------+---------------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select std_id,name,days_present * 5/12 as attendance_marks from Lab_Grades;
++--------+---------+------------------+
+| std_id | name    | attendance_marks |
++--------+---------+------------------+
+| 0001   | Abir    |           4.1667 |
+| 0002   | Nafis   |           5.0000 |
+| 0003   | Tasneem |           3.3333 |
+| 0005   | Arafat  |           4.5833 |
+| 0006   | Tasneem |           5.0000 |
+| 0007   | Muhtadi |           4.1667 |
++--------+---------+------------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select Upper(name),Lower(name) from Lab_Grades;
++-------------+-------------+
+| Upper(name) | Lower(name) |
++-------------+-------------+
+| ABIR        | abir        |
+| NAFIS       | nafis       |
+| TASNEEM     | tasneem     |
+| ARAFAT      | arafat      |
+| TASNEEM     | tasneem     |
+| MUHTADI     | muhtadi     |
++-------------+-------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select major from Lab_Grades;
++-------+
+| major |
++-------+
+| CS    |
+| CSE   |
+| CS    |
+| CSE   |
+| CSE   |
+| ECE   |
++-------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select DISTINCT major from Lab_Grades;
++-------+
+| major |
++-------+
+| CS    |
+| CSE   |
+| ECE   |
++-------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades order by name;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades order by name desc;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades order by days_present;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades order by days_present, cgpa;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+6 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades where days_present>10;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where days_present>10 and cgpa>3.7;
++--------+--------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name   | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+--------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0002   | Nafis  | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0005   | Arafat | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
++--------+--------+-------+---------+--------------+---------------+------+------------+---------------+
+2 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where project_marks between 18 and 20;
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+5 rows in set (0.001 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> Select * from Lab_Grades where major="CSE" or major = "CS";
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+5 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where major in ("CSE","CS");
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0005   | Arafat  | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+5 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where major not in ("CSE","CS");
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where major != "CSE";
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18 | NULL          |
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where sub_date between "2018-08-01" and "2018-08-31";
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+2 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where name Like "A%";
++--------+--------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name   | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+--------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir   | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
+| 0005   | Arafat | CSE   | 2       |           11 |            20 | 4.00 | 2018-09-13 | NULL          |
++--------+--------+-------+---------+--------------+---------------+------+------------+---------------+
+2 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where name like "%a";
+Empty set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where name like "M%i";
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where name like "A___";
++--------+------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0001   | Abir | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15 | NULL          |
++--------+------+-------+---------+--------------+---------------+------+------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]> select * from Lab_Grades where sub_date like "2018-08-__";
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | sub_date   | project_title |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+| 0002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15 | NULL          |
+| 0006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15 | NULL          |
++--------+---------+-------+---------+--------------+---------------+------+------------+---------------+
+2 rows in set (0.000 sec)
+
+MariaDB [CSE370_LAB01_Sec15]>
