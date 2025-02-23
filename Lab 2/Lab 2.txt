@@ -1,0 +1,295 @@
+
+Setting environment for using XAMPP for Windows.
+23101125@12D-27L-PC-37 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.22-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE CSE370Lab02;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> USE CSE370Lab02;
+Database changed
+MariaDB [CSE370Lab02]> CREATE TABLE Lab_Grades
+    -> (
+    ->      std_id char(4),
+    ->      name varchar(30),
+    ->      major char(3),
+    ->      section char(1),
+    ->      days_present int,
+    ->      project_marks double,
+    ->      cgpa decimal(3,2),
+    ->      submission_date date
+    -> );
+Query OK, 0 rows affected (0.038 sec)
+
+MariaDB [CSE370Lab02]> INSERT INTO Lab_Grades values
+    -> ('s001', 'Abir', 'CS', '1', 10, 18.5, 3.91, '2018-09-15'),
+    -> ('s002', 'Nafis', 'CSE', '1', 12, 20, 3.86, '2018-08-15'),
+    -> ('s003', 'Tasneem', 'CS', '1', 8, 18, 3.57, '2018-09-18'),
+    -> ('s004', 'Nahid', 'ECE', '2', 7, 16.5, 3.25, '2018-08-20'),
+    -> ('s005', 'Arafat', 'CS', '2', 11, 20, 4, '2018-09-13'),
+    -> ('s006', 'Tasneem', 'CSE', '1', 12, 17.5, 3.7, '2018-08-15'),
+    -> ('s007', 'Muhtadi', 'ECE', '1', 10, 19, 3.67, '2018-09-16');
+Query OK, 7 rows affected (0.008 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+MariaDB [CSE370Lab02]> SELECT * FROM Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18      |
+| s004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20      |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13      |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15      |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16      |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+7 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT name, major from Lab_Grades;
++---------+-------+
+| name    | major |
++---------+-------+
+| Abir    | CS    |
+| Nafis   | CSE   |
+| Tasneem | CS    |
+| Nahid   | ECE   |
+| Arafat  | CS    |
+| Tasneem | CSE   |
+| Muhtadi | ECE   |
++---------+-------+
+7 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT MIN(cgpa) FROM Lab_Grades;
++-----------+
+| MIN(cgpa) |
++-----------+
+|      3.25 |
++-----------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT COUNT(*) as total_students, AVG(project_marks) as average_project_marks From Lab_Grades;
++----------------+-----------------------+
+| total_students | average_project_marks |
++----------------+-----------------------+
+|              7 |                  18.5 |
++----------------+-----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT MIN(cgpa) from Lab_Grades GROUP BY major;
++-----------+
+| MIN(cgpa) |
++-----------+
+|      3.57 |
+|      3.70 |
+|      3.25 |
++-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, MIN(cgpa) from Lab_Grades GROUP BY majorl
+    ->
+    -> SELECT major, MIN(cgpa) from Lab_Grades GROUP BY major;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT major, MIN(cgpa) from Lab_Grades GROUP BY major' at line 3
+MariaDB [CSE370Lab02]> Bye
+
+23101125@12D-27L-PC-37 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 11
+Server version: 10.4.22-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE CSE370Lab02;
+ERROR 1007 (HY000): Can't create database 'cse370lab02'; database exists
+MariaDB [(none)]> USE CSE370Lab02;
+Database changed
+MariaDB [CSE370Lab02]> select * from Lab_Grades;
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18      |
+| s004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20      |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13      |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15      |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16      |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+7 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]>  SELECT major, MIN(cgpa) from Lab_Grades GROUP BY major;
++-------+-----------+
+| major | MIN(cgpa) |
++-------+-----------+
+| CS    |      3.57 |
+| CSE   |      3.70 |
+| ECE   |      3.25 |
++-------+-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, min(cgpa), max(cgpa) from Lab_Grades group by major;
++-------+-----------+-----------+
+| major | min(cgpa) | max(cgpa) |
++-------+-----------+-----------+
+| CS    |      3.57 |      4.00 |
+| CSE   |      3.70 |      3.86 |
+| ECE   |      3.25 |      3.67 |
++-------+-----------+-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT SUM(days_present) FROM Lab_Grades;
++-------------------+
+| SUM(days_present) |
++-------------------+
+|                70 |
++-------------------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, COUNT(*) FROM Lab_Grades GROUP BY major;
++-------+----------+
+| major | COUNT(*) |
++-------+----------+
+| CS    |        3 |
+| CSE   |        2 |
+| ECE   |        2 |
++-------+----------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, MIN(cgpa) as minCGPA, MAX(cgpa) as maxCGPA FROM Lab_Grades GROUP BY major HAVING COUNT(*)>=2;
++-------+---------+---------+
+| major | minCGPA | maxCGPA |
++-------+---------+---------+
+| CS    |    3.57 |    4.00 |
+| CSE   |    3.70 |    3.86 |
+| ECE   |    3.25 |    3.67 |
++-------+---------+---------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, MIN(cgpa) as minCGPA, MAX(cgpa) as maxCGPA FROM Lab_Grades GROUP BY major HAVING COUNT(*)>=3;
++-------+---------+---------+
+| major | minCGPA | maxCGPA |
++-------+---------+---------+
+| CS    |    3.57 |    4.00 |
++-------+---------+---------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, MIN(cgpa) as minCGPA, MAX(cgpa) as maxCGPA FROM Lab_Grades WHERE submission_dat<='2018-09-15' group by major;
+ERROR 1054 (42S22): Unknown column 'submission_dat' in 'where clause'
+MariaDB [CSE370Lab02]> SELECT major, MIN(cgpa) as minCGPA, MAX(cgpa) as maxCGPA FROM Lab_Grades WHERE submission_date<='2018-09-15' group by major;
++-------+---------+---------+
+| major | minCGPA | maxCGPA |
++-------+---------+---------+
+| CS    |    3.91 |    4.00 |
+| CSE   |    3.70 |    3.86 |
+| ECE   |    3.25 |    3.25 |
++-------+---------+---------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, MIN(cgpa) as minCGPA, MAX(cgpa) as maxCGPA FROM Lab_Grades WHERE submission_date<='2018-09-01' group by major;
++-------+---------+---------+
+| major | minCGPA | maxCGPA |
++-------+---------+---------+
+| CSE   |    3.70 |    3.86 |
+| ECE   |    3.25 |    3.25 |
++-------+---------+---------+
+2 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT major, min(cgpa) from Lab_Grades where submission_date<='2018-09-15' group by major having min(cgpa)<3.5;
++-------+-----------+
+| major | min(cgpa) |
++-------+-----------+
+| ECE   |      3.25 |
++-------+-----------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT * FROM Lab_Grades limit 5;
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      |
+| s003   | Tasneem | CS    | 1       |            8 |            18 | 3.57 | 2018-09-18      |
+| s004   | Nahid   | ECE   | 2       |            7 |          16.5 | 3.25 | 2018-08-20      |
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13      |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+5 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT * FROM Lab_Grades Order by CGPA desc limit 5;
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| s005   | Arafat  | CS    | 2       |           11 |            20 | 4.00 | 2018-09-13      |
+| s001   | Abir    | CS    | 1       |           10 |          18.5 | 3.91 | 2018-09-15      |
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15      |
+| s007   | Muhtadi | ECE   | 1       |           10 |            19 | 3.67 | 2018-09-16      |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+5 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> SELECT name, cgpa FROM Lab_Grades WHERE cgpa=(SELECT min(cgpa) FROM Lab_Grades;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [CSE370Lab02]> SELECT name, cgpa FROM Lab_Grades WHERE cgpa=(SELECT min(cgpa)) FROM Lab_Grades;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Lab_Grades' at line 1
+MariaDB [CSE370Lab02]> Select name,cgpa from Lab_Grades where cgpa=(Select min(cgpa) from Lab_Grades);
++-------+------+
+| name  | cgpa |
++-------+------+
+| Nahid | 3.25 |
++-------+------+
+1 row in set (0.001 sec)
+
+MariaDB [CSE370Lab02]> SELECT * FROM Lab_Grades where major='CSE' and cgpa> All(SELECT cgpa FROM Lab_Grades WHERE major='CS');
+Empty set (0.000 sec)
+
+MariaDB [CSE370Lab02]>  SELECT * FROM Lab_Grades where major='CSE' and cgpa>ANY(SELECT cgpa FROM Lab_Grades WHERE major='CS');
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| std_id | name    | major | section | days_present | project_marks | cgpa | submission_date |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+| s002   | Nafis   | CSE   | 1       |           12 |            20 | 3.86 | 2018-08-15      |
+| s006   | Tasneem | CSE   | 1       |           12 |          17.5 | 3.70 | 2018-08-15      |
++--------+---------+-------+---------+--------------+---------------+------+-----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]>
+MariaDB [CSE370Lab02]> SELECT DISTINCT major FROM Lab Grades L1 WHERE EXISTS (SELECT * FROM Lab_Grades L2 WHERE L2.major=L1.major and L2.cgpa<3.7);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'L1 WHERE EXISTS (SELECT * FROM Lab_Grades L2 WHERE L2.major=L1.major and L2.c...' at line 1
+MariaDB [CSE370Lab02]>
+MariaDB [CSE370Lab02]> SELECT DISTINCT major FROM Lab Grades L1 WHERE EXISTS(SELECT * FROM Lab_Grades L2 WHERE L2.major=L1.major and L2.cgpa<3.7);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'L1 WHERE EXISTS(SELECT * FROM Lab_Grades L2 WHERE L2.major=L1.major and L2.cg...' at line 1
+MariaDB [CSE370Lab02]> SELECT name from Lab_Grades L1 WHERE not exists (SELECT * from Lab_Grades L2 where L1.std!=L2.std_id and L2.project_marks>L1.project_marks);
+ERROR 1054 (42S22): Unknown column 'L1.std' in 'where clause'
+MariaDB [CSE370Lab02]> Select name from Lab_Grades where cgpa = (Select max(cgpa) from Lab_Grades);
++--------+
+| name   |
++--------+
+| Arafat |
++--------+
+1 row in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> select major, max(cgpa) from Lab_Grades group by major;
++-------+-----------+
+| major | max(cgpa) |
++-------+-----------+
+| CS    |      4.00 |
+| CSE   |      3.86 |
+| ECE   |      3.67 |
++-------+-----------+
+3 rows in set (0.000 sec)
+
+MariaDB [CSE370Lab02]> select name from Lab_Grades where (major, cgpa) in (Select major, max(cgpa) from Lab_Grades group by major;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [CSE370Lab02]>  select name from Lab_Grades where (major, cgpa) in (Select major, max(cgpa))  from Lab_Grades group by major;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from Lab_Grades group by major' at line 1
+MariaDB [CSE370Lab02]>
