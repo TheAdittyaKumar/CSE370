@@ -1,0 +1,274 @@
+
+Setting environment for using XAMPP for Windows.
+User@DESKTOP-T19MFTD c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE Company_22301518;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> USE Company_22301518;
+Database changed
+MariaDB [Company_22301518]> CREATE TABLE Employee(employee_id char(10),first_name varchar(20),last_name varchar(20), email varchar(60), phone_number char(14), hire_date date, job_id char(10), salary int, commission_pct decimal(5,3), manager_id char(10), department_id char(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [Company_22301518]>  CREATE TABLE Employee(employee_id char(10),first_name varchar(20),last_name varchar(20), email varchar(60), phone_number char(14), hire_date date, job_id char(10), salary int, commission_pct decimal(5,3), manager_id char(10), department_id char(10));
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [Company_22301518]> SHOW TABLES;
++----------------------------+
+| Tables_in_company_22301518 |
++----------------------------+
+| employee                   |
++----------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [Company_22301518]> DESCRIBE Employee;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| employee_id    | char(10)     | YES  |     | NULL    |       |
+| first_name     | varchar(20)  | YES  |     | NULL    |       |
+| last_name      | varchar(20)  | YES  |     | NULL    |       |
+| email          | varchar(60)  | YES  |     | NULL    |       |
+| phone_number   | char(14)     | YES  |     | NULL    |       |
+| hire_date      | date         | YES  |     | NULL    |       |
+| job_id         | char(10)     | YES  |     | NULL    |       |
+| salary         | int(11)      | YES  |     | NULL    |       |
+| commission_pct | decimal(5,3) | YES  |     | NULL    |       |
+| manager_id     | char(10)     | YES  |     | NULL    |       |
+| department_id  | char(10)     | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+11 rows in set (0.018 sec)
+
+MariaDB [Company_22301518]> INSERT INTO Employees VALUES ('EMP001','Zarif','Kazmi','ZarifKazmi@gmail.com','+8801234567891','2027-02-15','JOB001',31200,12.345,'MNG001','DPT001'),('EMP002','Usaeed','Tibro','UsaeedRahmanTibro@gmail,com','+8801234567892','2027-02-16','JOB001',31500,18.452,'MNG001','DPT001'),('EMP003','Safin','Tonmoy','SafinAhmedTonmoy@gmail.com','+8801234567893','2027-03-05','JOB002',1250,10.123,'MNG001','DPT001'),('EMP004','Rubayat','Shammo','ShamsRubayat@gmail.com','+8801234567894','2028-03-24','JOB002',3600,12.345,'MNG002','DPT002'),('EMP005','Adittya','Kumar','AdittyaKumar@gmail.com','+8801234567895','2027-03-05','JOB003',31000,11.111,'MNG002','DPT002'),('EMP006','Mashrafi','Abedin','MashrafiAbedin@gmail.com','+8801234567896','2027-07-07','JOB004',46500,13.123,'MNG003','DPT003'),('EMP007','Ishrak','Bhuiyan','IshrakBhuiyan@gmail.com','+8801234567897','2027-08-08','JOB005',32000,13.123,'MNG004','DPT004'),('EMP008','Fahim','Faisal','FahimFaisal@gmail.com','+8801234567898','2027-09-09','JOB001',3700,12.345,'MNG001',DPT001'),('EMP009','Sujail','Yunus','SujailYunus@gmail.com,'+8801234567899','2027-09-15','JOB006',25000,10.111,'MNG005','DPT007'),('EMP010','Rudra','Kushari','RudraKushari@gmail.com','+8801234567810','2027-01-02','JOB007',15000,10.111,'MNG006','DPT008'),('EMP011','Kabir','Hossain','kabir.hossain@gmail.com','+8801234567811','2027-06-10','JOB005',28000,9.999,'MNG004','DPT005'),('EMP012','Tanvir','Rahman','tanvir.rahman@gmail.com','+8801234567812','2027-04-20','JOB006',32000,12.500,'MNG005','DPT007'),('EMP013','Mehdi','Hassan','mehdi.hassan@gmail.com','+8801234567813','2027-05-12','JOB007',35000,10.000,'MNG006','DPT008'),('EMP014','Farzana','Karim','farzana.karim@gmail.com','+8801234567814','2027-02-28','JOB002',4000,11.500,'MNG002','DPT002'),('EMP015','Asif','Mahmud','asif.mahmud@gmail.com','+8801234567815','2027-01-15','JOB004',3700,10.500,'MNG003','DPT003');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''),('EMP009','Sujail','Yunus','SujailYunus@gmail.com,'+8801234567899','2027-0...' at line 1
+MariaDB [Company_22301518]> INSERT INTO Employee VALUES
+    -> ('EMP001','Zarif','Kazmi','ZarifKazmi@gmail.com','+8801234567891','2027-02-15','JOB001',31200,12.345,'MNG001','DPT001'),
+    -> ('EMP002','Usaeed','Tibro','UsaeedRahmanTibro@gmail.com','+8801234567892','2027-02-16','JOB001',31500,18.452,'MNG001','DPT001'),
+    -> ('EMP003','Safin','Tonmoy','SafinAhmedTonmoy@gmail.com','+8801234567893','2027-03-05','JOB002',1250,10.123,'MNG001','DPT001'),
+    -> ('EMP004','Rubayat','Shammo','ShamsRubayat@gmail.com','+8801234567894','2028-03-24','JOB002',3600,12.345,'MNG002','DPT002'),
+    -> ('EMP005','Adittya','Kumar','AdittyaKumar@gmail.com','+8801234567895','2027-03-05','JOB003',31000,11.111,'MNG002','DPT002'),
+    -> ('EMP006','Mashrafi','Abedin','MashrafiAbedin@gmail.com','+8801234567896','2027-07-07','JOB004',46500,13.123,'MNG003','DPT003'),
+    -> ('EMP007','Ishrak','Bhuiyan','IshrakBhuiyan@gmail.com','+8801234567897','2027-08-08','JOB005',32000,13.123,'MNG004','DPT004'),
+    -> ('EMP008','Fahim','Faisal','FahimFaisal@gmail.com','+8801234567898','2027-09-09','JOB001',3700,12.345,'MNG001','DPT001'),
+    -> ('EMP009','Sujail','Yunus','SujailYunus@gmail.com','+8801234567899','2027-09-15','JOB006',25000,10.111,'MNG005','DPT007'),
+    -> ('EMP010','Rudra','Kushari','RudraKushari@gmail.com','+8801234567810','2027-01-02','JOB007',15000,10.111,'MNG006','DPT008'),
+    -> ('EMP011','Kabir','Hossain','kabir.hossain@gmail.com','+8801234567811','2027-06-10','JOB005',28000,9.999,'MNG004','DPT005'),
+    -> ('EMP012','Tanvir','Rahman','tanvir.rahman@gmail.com','+8801234567812','2027-04-20','JOB006',32000,12.500,'MNG005','DPT007'),
+    -> ('EMP013','Mehdi','Hassan','mehdi.hassan@gmail.com','+8801234567813','2027-05-12','JOB007',35000,10.000,'MNG006','DPT008'),
+    -> ('EMP014','Farzana','Karim','farzana.karim@gmail.com','+8801234567814','2027-02-28','JOB002',4000,11.500,'MNG002','DPT002'),
+    -> ('EMP015','Asif','Mahmud','asif.mahmud@gmail.com','+8801234567815','2027-01-15','JOB004',3700,10.500,'MNG003','DPT003');
+Query OK, 15 rows affected (0.057 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [Company_22301518]> INSERT INTO Employee VALUES ('EMP016','Hasib','Khan','hasib.khan@gmail.com','+8801234567816','2027-08-15','JOB009',26000,9.500,'MNG004','DPT005'),('EMP017','Jahid','Islam','jahid.islam@gmail.com','+8801234567817','2027-07-18','JOB004',42000,11.200,'MNG003','DPT003'),('EMP018','Fariha','Zaman','fariha.zaman@gmail.com','+8801234567818','2027-05-30','JOB007',32000,10.000,'MNG006','DPT008'),('EMP019','Tanisha','Ahmed','tanisha.ahmed@gmail.com','+8801234567819','2027-06-12','JOB006',27000,9.200,'MNG005','DPT007');
+Query OK, 4 rows affected (0.003 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [Company_22301518]> Describe Employee;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| employee_id    | char(10)     | YES  |     | NULL    |       |
+| first_name     | varchar(20)  | YES  |     | NULL    |       |
+| last_name      | varchar(20)  | YES  |     | NULL    |       |
+| email          | varchar(60)  | YES  |     | NULL    |       |
+| phone_number   | char(14)     | YES  |     | NULL    |       |
+| hire_date      | date         | YES  |     | NULL    |       |
+| job_id         | char(10)     | YES  |     | NULL    |       |
+| salary         | int(11)      | YES  |     | NULL    |       |
+| commission_pct | decimal(5,3) | YES  |     | NULL    |       |
+| manager_id     | char(10)     | YES  |     | NULL    |       |
+| department_id  | char(10)     | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+11 rows in set (0.011 sec)
+
+MariaDB [Company_22301518]> Show Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Employee' at line 1
+MariaDB [Company_22301518]> SELECT * FROM Employee;
++-------------+------------+-----------+-----------------------------+----------------+------------+--------+--------+----------------+------------+---------------+
+| employee_id | first_name | last_name | email                       | phone_number   | hire_date  | job_id | salary | commission_pct | manager_id | department_id |
++-------------+------------+-----------+-----------------------------+----------------+------------+--------+--------+----------------+------------+---------------+
+| EMP001      | Zarif      | Kazmi     | ZarifKazmi@gmail.com        | +8801234567891 | 2027-02-15 | JOB001 |  31200 |         12.345 | MNG001     | DPT001        |
+| EMP002      | Usaeed     | Tibro     | UsaeedRahmanTibro@gmail.com | +8801234567892 | 2027-02-16 | JOB001 |  31500 |         18.452 | MNG001     | DPT001        |
+| EMP003      | Safin      | Tonmoy    | SafinAhmedTonmoy@gmail.com  | +8801234567893 | 2027-03-05 | JOB002 |   1250 |         10.123 | MNG001     | DPT001        |
+| EMP004      | Rubayat    | Shammo    | ShamsRubayat@gmail.com      | +8801234567894 | 2028-03-24 | JOB002 |   3600 |         12.345 | MNG002     | DPT002        |
+| EMP005      | Adittya    | Kumar     | AdittyaKumar@gmail.com      | +8801234567895 | 2027-03-05 | JOB003 |  31000 |         11.111 | MNG002     | DPT002        |
+| EMP006      | Mashrafi   | Abedin    | MashrafiAbedin@gmail.com    | +8801234567896 | 2027-07-07 | JOB004 |  46500 |         13.123 | MNG003     | DPT003        |
+| EMP007      | Ishrak     | Bhuiyan   | IshrakBhuiyan@gmail.com     | +8801234567897 | 2027-08-08 | JOB005 |  32000 |         13.123 | MNG004     | DPT004        |
+| EMP008      | Fahim      | Faisal    | FahimFaisal@gmail.com       | +8801234567898 | 2027-09-09 | JOB001 |   3700 |         12.345 | MNG001     | DPT001        |
+| EMP009      | Sujail     | Yunus     | SujailYunus@gmail.com       | +8801234567899 | 2027-09-15 | JOB006 |  25000 |         10.111 | MNG005     | DPT007        |
+| EMP010      | Rudra      | Kushari   | RudraKushari@gmail.com      | +8801234567810 | 2027-01-02 | JOB007 |  15000 |         10.111 | MNG006     | DPT008        |
+| EMP011      | Kabir      | Hossain   | kabir.hossain@gmail.com     | +8801234567811 | 2027-06-10 | JOB005 |  28000 |          9.999 | MNG004     | DPT005        |
+| EMP012      | Tanvir     | Rahman    | tanvir.rahman@gmail.com     | +8801234567812 | 2027-04-20 | JOB006 |  32000 |         12.500 | MNG005     | DPT007        |
+| EMP013      | Mehdi      | Hassan    | mehdi.hassan@gmail.com      | +8801234567813 | 2027-05-12 | JOB007 |  35000 |         10.000 | MNG006     | DPT008        |
+| EMP014      | Farzana    | Karim     | farzana.karim@gmail.com     | +8801234567814 | 2027-02-28 | JOB002 |   4000 |         11.500 | MNG002     | DPT002        |
+| EMP015      | Asif       | Mahmud    | asif.mahmud@gmail.com       | +8801234567815 | 2027-01-15 | JOB004 |   3700 |         10.500 | MNG003     | DPT003        |
+| EMP016      | Hasib      | Khan      | hasib.khan@gmail.com        | +8801234567816 | 2027-08-15 | JOB009 |  26000 |          9.500 | MNG004     | DPT005        |
+| EMP017      | Jahid      | Islam     | jahid.islam@gmail.com       | +8801234567817 | 2027-07-18 | JOB004 |  42000 |         11.200 | MNG003     | DPT003        |
+| EMP018      | Fariha     | Zaman     | fariha.zaman@gmail.com      | +8801234567818 | 2027-05-30 | JOB007 |  32000 |         10.000 | MNG006     | DPT008        |
+| EMP019      | Tanisha    | Ahmed     | tanisha.ahmed@gmail.com     | +8801234567819 | 2027-06-12 | JOB006 |  27000 |          9.200 | MNG005     | DPT007        |
++-------------+------------+-----------+-----------------------------+----------------+------------+--------+--------+----------------+------------+---------------+
+19 rows in set (0.000 sec)
+
+MariaDB [Company_22301518]> SELECT first_name,last_name,phone_number,hire_date,department_id ORDER BY DESC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DESC' at line 1
+MariaDB [Company_22301518]> SELECT first_name,last_name,phone_number,hire_date,department_id FROM Employee WHERE hire_date = (SELECT MAX(hire_date) FROM Employee);
++------------+-----------+----------------+------------+---------------+
+| first_name | last_name | phone_number   | hire_date  | department_id |
++------------+-----------+----------------+------------+---------------+
+| Rubayat    | Shammo    | +8801234567894 | 2028-03-24 | DPT002        |
++------------+-----------+----------------+------------+---------------+
+1 row in set (0.001 sec)
+
+MariaDB [Company_22301518]> SELECT first_name, last_name, email, phone_number, hire_date, department_id
+    -> FROM Employee
+    -> WHERE hire_date = (SELECT MAX(hire_date) FROM Employee);
++------------+-----------+------------------------+----------------+------------+---------------+
+| first_name | last_name | email                  | phone_number   | hire_date  | department_id |
++------------+-----------+------------------------+----------------+------------+---------------+
+| Rubayat    | Shammo    | ShamsRubayat@gmail.com | +8801234567894 | 2028-03-24 | DPT002        |
++------------+-----------+------------------------+----------------+------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [Company_22301518]> SELECT first_name,last_name,email,phone_number,hire_date,department_id FROM Employee WHERE hire_date=(SELECT MAX(hire_date) From Employee0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [Company_22301518]> SELECT first_name,last_name,email,phone_number,hire_date,department_id FROM Employee WHERE hire_date=(SELECT MAX(hire_date) From Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [Company_22301518]> SELECT first_name, last_name, email, phone_number, hire_date, department_id FROM Employee WHERE hire_date = (SELECT MAX(hire_date) FROM Employee);
++------------+-----------+------------------------+----------------+------------+---------------+
+| first_name | last_name | email                  | phone_number   | hire_date  | department_id |
++------------+-----------+------------------------+----------------+------------+---------------+
+| Rubayat    | Shammo    | ShamsRubayat@gmail.com | +8801234567894 | 2028-03-24 | DPT002        |
++------------+-----------+------------------------+----------------+------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [Company_22301518]> SELECT first_name,last_name,employee_id,phone_number,salary,department_id FROM Employee WHERE salary =(SELECT MIN(salary) FROM Employee WHERE Employee.department_id=Employee.department_id);
++------------+-----------+-------------+----------------+--------+---------------+
+| first_name | last_name | employee_id | phone_number   | salary | department_id |
++------------+-----------+-------------+----------------+--------+---------------+
+| Safin      | Tonmoy    | EMP003      | +8801234567893 |   1250 | DPT001        |
++------------+-----------+-------------+----------------+--------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [Company_22301518]> SELECT first_name, last_name, employee_id, phone_number, salary, department_id FROM Employee e1 WHERE salary=(SELECT MIN(salary) FROM Employee e2 WHERE e1.department_id=e2.department_id);
++------------+-----------+-------------+----------------+--------+---------------+
+| first_name | last_name | employee_id | phone_number   | salary | department_id |
++------------+-----------+-------------+----------------+--------+---------------+
+| Safin      | Tonmoy    | EMP003      | +8801234567893 |   1250 | DPT001        |
+| Rubayat    | Shammo    | EMP004      | +8801234567894 |   3600 | DPT002        |
+| Ishrak     | Bhuiyan   | EMP007      | +8801234567897 |  32000 | DPT004        |
+| Sujail     | Yunus     | EMP009      | +8801234567899 |  25000 | DPT007        |
+| Rudra      | Kushari   | EMP010      | +8801234567810 |  15000 | DPT008        |
+| Asif       | Mahmud    | EMP015      | +8801234567815 |   3700 | DPT003        |
+| Hasib      | Khan      | EMP016      | +8801234567816 |  26000 | DPT005        |
++------------+-----------+-------------+----------------+--------+---------------+
+7 rows in set (0.001 sec)
+
+MariaDB [Company_22301518]> SELECT first_name, last_name, email, phone_number, hire_date, department_id FROM Employee WHERE hire_date = (SELECT MAX(hire_date) FROM Employee);
++------------+-----------+------------------------+----------------+------------+---------------+
+| first_name | last_name | email                  | phone_number   | hire_date  | department_id |
++------------+-----------+------------------------+----------------+------------+---------------+
+| Rubayat    | Shammo    | ShamsRubayat@gmail.com | +8801234567894 | 2028-03-24 | DPT002        |
++------------+-----------+------------------------+----------------+------------+---------------+
+1 row in set (0.000 sec)
+
+MariaDB [Company_22301518]>  SELECT first_name, last_name, employee_id, phone_number, salary, department_id FROM Employee e1 WHERE salary=(SELECT MIN(salary) FROM Employee e2 WHERE e1.department_id=e2.department_id);
++------------+-----------+-------------+----------------+--------+---------------+
+| first_name | last_name | employee_id | phone_number   | salary | department_id |
++------------+-----------+-------------+----------------+--------+---------------+
+| Safin      | Tonmoy    | EMP003      | +8801234567893 |   1250 | DPT001        |
+| Rubayat    | Shammo    | EMP004      | +8801234567894 |   3600 | DPT002        |
+| Ishrak     | Bhuiyan   | EMP007      | +8801234567897 |  32000 | DPT004        |
+| Sujail     | Yunus     | EMP009      | +8801234567899 |  25000 | DPT007        |
+| Rudra      | Kushari   | EMP010      | +8801234567810 |  15000 | DPT008        |
+| Asif       | Mahmud    | EMP015      | +8801234567815 |   3700 | DPT003        |
+| Hasib      | Khan      | EMP016      | +8801234567816 |  26000 | DPT005        |
++------------+-----------+-------------+----------------+--------+---------------+
+7 rows in set (0.000 sec)
+
+MariaDB [Company_22301518]> SELECT first_name,last_name,employee_id,commision_pct,department_id FROM Employee WHERE department_id='DPT007' AND commission_pct<(SELECT MIN(commision_pct) FROM Employee WHERE department_id='DPT005');
+ERROR 1054 (42S22): Unknown column 'commision_pct' in 'field list'
+MariaDB [Company_22301518]> SELECT first_name,last_name,employee_id,commission_pct,department_id FROM Employee WHERE department_id='DPT007' AND commission_pct<(SELECT MIN(commission_pct) FROM Employee WHERE department_id='DPT005');
++------------+-----------+-------------+----------------+---------------+
+| first_name | last_name | employee_id | commission_pct | department_id |
++------------+-----------+-------------+----------------+---------------+
+| Tanisha    | Ahmed     | EMP019      |          9.200 | DPT007        |
++------------+-----------+-------------+----------------+---------------+
+1 row in set (0.001 sec)
+
+MariaDB [Company_22301518]> SELECT department_id, COUNT(*) AS total_employees FROM Employee WHERE department_id NOT IN(SELECT DISTINCT FROM Employee WHERE salary>30000) GROUP BY department_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee WHERE salary>30000) GROUP BY department_id' at line 1
+MariaDB [Company_22301518]> SELECT department_id, COUNT(*) AS total_employees FROM Employee WHERE department_id NOT IN (SELECT DISTINCT department_id FROM Employee WHERE salary > 30000) GROUP BY department_id;
++---------------+-----------------+
+| department_id | total_employees |
++---------------+-----------------+
+| DPT005        |               2 |
++---------------+-----------------+
+1 row in set (0.001 sec)
+
+MariaDB [Company_22301518]> SELECT department_id, job_id, commission_pct FROM Employee WHERE commission_pct<(SELECT MAX(commission_pct) FROM Employee AS subquery WHERE subquery.department_id = Employee.department_id);
++---------------+--------+----------------+
+| department_id | job_id | commission_pct |
++---------------+--------+----------------+
+| DPT001        | JOB001 |         12.345 |
+| DPT001        | JOB002 |         10.123 |
+| DPT002        | JOB003 |         11.111 |
+| DPT001        | JOB001 |         12.345 |
+| DPT007        | JOB006 |         10.111 |
+| DPT008        | JOB007 |         10.000 |
+| DPT002        | JOB002 |         11.500 |
+| DPT003        | JOB004 |         10.500 |
+| DPT005        | JOB009 |          9.500 |
+| DPT003        | JOB004 |         11.200 |
+| DPT008        | JOB007 |         10.000 |
+| DPT007        | JOB006 |          9.200 |
++---------------+--------+----------------+
+12 rows in set (0.001 sec)
+
+MariaDB [Company_22301518]> SELECT manager_id FROM Employee WHERE manager_id NOT IN(SELECT DISTINCT manager_id FROM Employee WHERE salary<3500);
++------------+
+| manager_id |
++------------+
+| MNG002     |
+| MNG002     |
+| MNG003     |
+| MNG004     |
+| MNG005     |
+| MNG006     |
+| MNG004     |
+| MNG005     |
+| MNG006     |
+| MNG002     |
+| MNG003     |
+| MNG004     |
+| MNG003     |
+| MNG006     |
+| MNG005     |
++------------+
+15 rows in set (0.001 sec)
+
+MariaDB [Company_22301518]> SELECT first_name,last_name,employee_id,email,salary,department_id,commission_pct FROM Employee commission_pct=(SELECT MIN(commission_pct) FROM Employee AS subquery WHERE subquery.manager_id=Employee.manager_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '=(SELECT MIN(commission_pct) FROM Employee AS subquery WHERE subquery.manager...' at line 1
+MariaDB [Company_22301518]> SELECT first_name, last_name, employee_id, email, salary, department_id, commission_pct FROM Employee WHERE commission_pct = (SELECT MIN(commission_pct) FROM Employee AS subquery WHERE subquery.manager_id = Employee.manager_id);
++------------+-----------+-------------+----------------------------+--------+---------------+----------------+
+| first_name | last_name | employee_id | email                      | salary | department_id | commission_pct |
++------------+-----------+-------------+----------------------------+--------+---------------+----------------+
+| Safin      | Tonmoy    | EMP003      | SafinAhmedTonmoy@gmail.com |   1250 | DPT001        |         10.123 |
+| Adittya    | Kumar     | EMP005      | AdittyaKumar@gmail.com     |  31000 | DPT002        |         11.111 |
+| Mehdi      | Hassan    | EMP013      | mehdi.hassan@gmail.com     |  35000 | DPT008        |         10.000 |
+| Asif       | Mahmud    | EMP015      | asif.mahmud@gmail.com      |   3700 | DPT003        |         10.500 |
+| Hasib      | Khan      | EMP016      | hasib.khan@gmail.com       |  26000 | DPT005        |          9.500 |
+| Fariha     | Zaman     | EMP018      | fariha.zaman@gmail.com     |  32000 | DPT008        |         10.000 |
+| Tanisha    | Ahmed     | EMP019      | tanisha.ahmed@gmail.com    |  27000 | DPT007        |          9.200 |
++------------+-----------+-------------+----------------------------+--------+---------------+----------------+
+7 rows in set (0.001 sec)
+
+MariaDB [Company_22301518]>
